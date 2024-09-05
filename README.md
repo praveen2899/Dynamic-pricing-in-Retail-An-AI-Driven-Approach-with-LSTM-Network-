@@ -1,6 +1,6 @@
 Instructions
 
-step1: install anaconda distribution \n
+step1: install anaconda distribution<br>
 step2: after installation open anaconda prompt
 step3: create a new virtual environment for that run command "conda create --name myenv python==3.8" for confirmation click 'Y'
 step4: after that run command "conda activate myenv"
