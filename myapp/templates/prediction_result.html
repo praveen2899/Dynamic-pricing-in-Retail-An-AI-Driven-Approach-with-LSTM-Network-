@@ -1,0 +1,171 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Prediction Results</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-sixteen.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+
+    <style>
+        body {
+            background-image: url("{% static 'assets/images/cover.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .results-container {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .results-container h2 {
+            color: #e0f7fa;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .results-container table {
+            width: 100%;
+            margin-top: 70px;
+            margin-left: 500px;
+            color: #ffffff;
+        }
+
+        .results-container table th, .results-container table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ffffff;
+        }
+
+        .results-container table th {
+            background-color: #333333;
+        }
+
+        .results-container table td {
+            background-color: #555555;
+        }
+
+        .results-container .btn-back {
+            display: block;
+            margin: 0 auto;
+            background-color: #000000;
+            color: #ffffff;
+            margin-top: 30px;
+            padding: 12px;
+            font-size: 1em;
+            margin-left: 800px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 150px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .results-container .btn-back:hover {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><h2>Supermarket Data<em>Analyzer</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Analysis' %}">Analysis</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'prediction' %}">Prediction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Results Container -->
+<div class="results-container">
+    <h2>Prediction Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Product Name</th>
+                <th>Weekday</th>
+                <th>Unit Price</th>
+                <th>Dynamic Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for day, product_name, weekday, supermarket, prediction, dynamic_price in results %}
+            <tr>
+                <td>{{ day }}</td>
+                <td>{{ product_name }}</td>
+                <td>{{ weekday }}</td>
+                <td>{{ prediction }}</td>
+                <td>{{ dynamic_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'prediction' %}" class="btn-back">Back to Prediction</a>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inner-content">
+                    <p>Copyright &copy; Supermarket Data Analyzer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Additional Scripts -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/js/owl.js' %}"></script>
+<script src="{% static 'assets/js/slick.js' %}"></script>
+<script src="{% static 'assets/js/isotope.js' %}"></script>
+<script src="{% static 'assets/js/accordions.js' %}"></script>
+
+</body>
+</html>

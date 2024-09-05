@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>Supermarket Data Analyzer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo-sixteen.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+
+    <style>
+        /* Body background image */
+        body {
+            background-image: url("{% static 'assets/images/cover.png' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+       /* Login Form Styling */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-form h2 {
+    color: #e0f7fa;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.login-form .form-label {
+    color: #e0f7fa;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 8px; /* Reduced padding for smaller height */
+    margin-bottom: 15px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 0.9em; /* Reduced font size */
+}
+
+/* Updated Signup Link Hover Color */
+.login-form .signup-link {
+    color: #e0f7fa; /* Original color */
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+    text-decoration: none; /* Removes underline */
+}
+
+.login-form .signup-link:hover {
+    color: #007bff; /* Blue color on hover */
+}
+
+.login-form button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 12px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #ff0000;
+}
+
+.login-form .signup-link {
+    color: #e0f7fa;
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href=""><h2>Supermarket Data<em>Analyzer</em></h2></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> Analysis
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="">Prediction</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="banner header-text">
+    <div class="login-form">
+        <h2>Login</h2>
+        <form method="post" action="" onsubmit="return validateLogin()">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username" class="form-label">Username:</label>
+                <input type="text" name="username" id="id_username" required>
+            </div>
+            <div class="form-group">
+                <label for="id_password" class="form-label">Password:</label>
+                <input type="password" name="password" id="id_password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inner-content">
+                    <p>Copyright &copy; Supermarket Data Analyzer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Additional Scripts -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/js/owl.js' %}"></script>
+<script src="{% static 'assets/js/slick.js' %}"></script>
+<script src="{% static 'assets/js/isotope.js' %}"></script>
+<script src="{% static 'assets/js/accordions.js' %}"></script>
+
+<script>
+    function validateLogin() {
+        var username = document.getElementById('id_username').value;
+        var password = document.getElementById('id_password').value;
+
+        if (username === 'admin' && password === 'admin123') {
+            
+            window.location.href = '/Analysis/'; // Adjust the URL path as needed
+            alert('Welcome Admin.');
+            return false; // Prevents form submission
+        } else {
+            // Show alert for incorrect credentials
+            alert('Incorrect username or password. Please try again.');
+            return false; // Prevents form submission
+        }
+    }
+</script>
+
+</body>
+</html>
